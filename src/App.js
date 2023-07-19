@@ -10,14 +10,14 @@ function App() {
 
 function Counter() {
   const [count, setCount] = useState(0);
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
 
   function increaseCount() {
-    setCount((c) => c + 1);
+    setCount((c) => c + step);
   }
 
   function decreaseCount() {
-    if (count >= 1) setCount((c) => c - 1);
+    setCount((c) => c - step);
   }
 
   function increaseStep() {
@@ -25,7 +25,7 @@ function Counter() {
   }
 
   function decreaseStep() {
-    if (step >= 1) setStep((c) => c - 1);
+    if (step > 1) setStep((c) => c - 1);
   }
 
   return (
@@ -41,20 +41,29 @@ function Counter() {
         <button onClick={increaseCount}>+</button>
       </div>
 
-      <Display finalCount={step * count} />
+      <Display finalCount={count} />
     </div>
   );
 
-  function Display(props) {
+  function Display({ finalCount }) {
     // Get current date
     const currDate = new Date();
-    currDate.setDate(currDate.getDate() + props.finalCount);
+    currDate.setDate(currDate.getDate() + finalCount);
 
     return (
       <div>
         <p>
-          {props.finalCount}&nbsp;day<span>{step > 1 && "s"}</span> from today
-          is {currDate.toDateString()}
+          {
+            // Display today is <currDate>
+            finalCount === 0
+              ? `Today is `
+              : finalCount > 0
+              ? // Display x days from today is <currDate>
+                `${finalCount} day${finalCount !== 1 ? `s` : ``} from today is `
+              : // Display x days ago was <currDate>
+                `${finalCount} day${finalCount !== -1 ? `s` : ``} ago was `
+          }
+          {currDate.toDateString()}
         </p>
       </div>
     );
