@@ -9,15 +9,15 @@ function App() {
 }
 
 function Counter() {
-  const [count, setCount] = useState(1);
-  const [step, setStep] = useState(1);
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState(0);
 
   function increaseCount() {
     setCount((c) => c + 1);
   }
 
   function decreaseCount() {
-    if (count > 1) setCount((c) => c - 1);
+    if (count >= 1) setCount((c) => c - 1);
   }
 
   function increaseStep() {
@@ -25,7 +25,7 @@ function Counter() {
   }
 
   function decreaseStep() {
-    if (step > 1) setStep((c) => c - 1);
+    if (step >= 1) setStep((c) => c - 1);
   }
 
   return (
@@ -54,8 +54,7 @@ function Counter() {
       <div>
         <p>
           {props.finalCount}&nbsp;day<span>{step > 1 && "s"}</span> from today
-          is{" "}
-          {`${currDate.getDate()}/${currDate.getMonth()}/${currDate.getFullYear()} `}
+          is {currDate.toDateString()}
         </p>
       </div>
     );
