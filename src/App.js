@@ -20,20 +20,20 @@ function Counter() {
     setCount((c) => c - step);
   }
 
-  function increaseStep() {
-    setStep((s) => s + 1);
-  }
-
-  function decreaseStep() {
-    if (step > 1) setStep((c) => c - 1);
-  }
-
   return (
     <div className="counter">
       <div>
-        <button onClick={decreaseStep}>-</button>
-        <span>&nbsp;Step: {step}&nbsp;&nbsp;</span>
-        <button onClick={increaseStep}>+</button>
+        <input
+          type="range"
+          id="step"
+          name="step"
+          min="1"
+          max="10"
+          step={step}
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
+        />
+        <label htmlFor="step"> {step}</label>
       </div>
       <div>
         <button onClick={decreaseCount}>-</button>
