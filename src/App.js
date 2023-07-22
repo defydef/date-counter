@@ -29,7 +29,6 @@ function Counter() {
           name="step"
           min="1"
           max="10"
-          step={step}
           value={step}
           onChange={(e) => setStep(Number(e.target.value))}
         />
@@ -37,7 +36,11 @@ function Counter() {
       </div>
       <div>
         <button onClick={decreaseCount}>-</button>
-        <span>&nbsp;Count: {count}&nbsp;</span>
+        <input
+          type="text"
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        />
         <button onClick={increaseCount}>+</button>
       </div>
 
