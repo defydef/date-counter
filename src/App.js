@@ -45,6 +45,18 @@ function Counter() {
       </div>
 
       <Display finalCount={count} />
+      {(count !== 0 || step !== 1) && (
+        <div>
+          <button
+            onClick={() => {
+              setCount(0);
+              setStep(1);
+            }}
+          >
+            Reset
+          </button>
+        </div>
+      )}
     </div>
   );
 
